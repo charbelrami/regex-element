@@ -1,0 +1,27 @@
+{
+  "name": "regex-element",
+  "version": "0.1.0",
+  "description": "",
+  "main": "regex-element.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charbelrami/regex-element.git"
+  },
+  "keywords": [
+    "regex",
+    "regexp",
+    "regular expression",
+    "polymer",
+    "custom-element",
+    "web-components"
+  ],
+  "author": "Charbel Rami",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/charbelrami/regex-element/issues"
+  },
+  "homepage": "https://github.com/charbelrami/regex-element#readme"
+}

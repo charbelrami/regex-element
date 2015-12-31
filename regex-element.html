@@ -1,0 +1,64 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-input/all-imports.html">
+<link rel="import" href="../paper-checkbox/paper-checkbox.html">
+
+<dom-module id="regex-element">
+  <template>
+    <style>
+      :host {
+        @apply(--paper-font-common-base);
+      }
+      .output {
+        word-wrap: break-word;
+      }
+    </style>
+
+    <paper-input on-input="_updateRegex" label="RegEx" type="text"></paper-input>
+
+    <paper-checkbox on-change="_match" checked="{{g}}">g</paper-checkbox>
+    <paper-checkbox on-change="_match" checked="{{i}}">i</paper-checkbox>
+    <paper-checkbox on-change="_match" checked="{{m}}">m</paper-checkbox>
+
+    <paper-textarea id="input" on-input="_match" label="Text"></paper-textarea>
+
+    <div class="output">{{output}}</div>
+
+  </template>
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'regex-element',
+
+        properties: {
+          regex: {
+            type: String,
+            value: ''
+          },
+          g: {
+            type: Boolean,
+            value: true
+          },
+          m: Boolean,
+          i: Boolean,
+          output: Array
+        },
+
+        _updateRegex: function(e) {
+          this.regex = e.target.value;
+          this._match();
+        },
+
+        _match: function() {
+          var flags = '';
+          this.g ? flags += 'g' : '';
+          this.i ? flags += 'i' : '';
+          this.m ? flags += 'm' : '';
+          var exp = new RegExp(this.regex, flags);
+          this.regex === '' || this.$.input.value === '' ? this.output = [] : this.output = this.$.input.value.match(exp).join(', ');
+        }
+      });
+    }());
+  </script>
+</dom-module>
